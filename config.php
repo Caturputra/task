@@ -8,7 +8,8 @@
 
   $var_con = mysqli_connect($var_host, $var_user, $var_pass, $var_name);
 
-  if (!$var_con) {
+  if (mysqli_connect_errno()) {
+    echo "Failed to connect to MySQL: " . mysqli_connect_error();
     die();
   }
 

@@ -1,5 +1,8 @@
 <?php
+  //include '../config.php';
   include 'login_check.php';
+  include 'product/product_add.php';
+
   $var_username = $_SESSION['username'];
 
   if (empty($var_username)) {
@@ -16,9 +19,9 @@
     <link href="../assets/font-awesome/css/font-awesome.min.css" type="text/css" rel="stylesheet" />
     <link type="text/css" href="../assets/stylesheet/stylesheet.css" rel="stylesheet" media="screen" />
 
-    <script type="text/javascript" src="../assets/javascript/jquery.js"></script>
+    <script type="text/javascript" src="../assets/javascript/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="../assets/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../assets/javascript/common.js"></script>
   </head>
   <body>
     <div id="container">
@@ -68,7 +71,13 @@
               <div class="panel-body">
                 <div clas="row">
                   <div class="col-sm-8">
-                    <form action="" class="form-horizontal" enctype="multipart/form-data">
+                    <?php if ( isset($var_message) ) : ?>
+      								<div class="alert alert-warning">
+      									<i class="fa fa-warning fa-lg"></i><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      									<strong><?= $var_message; ?></strong>
+      								</div>
+      						  <?php endif; ?>
+                    <form action="" class="form-horizontal" method="POST" enctype="multipart/form-data">
                       <div class="form-group">
                         <label for="frm_product_name" class="control-label col-sm-2">Name</label>
                         <div class="col-sm-6">
@@ -105,10 +114,18 @@
                       </div>
 
                       <div class="form-group">
+                        <label for="frm_img" class="control-label col-sm-2">File input</label>
+                        <div class="col-sm-6">
+                          <input type="file" id="frm_img" class="form-control" name="frm_img"><br/>
+                          <img src="" id="frm_preview" weight="100" height="100"/>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
                         <label for="frm_product_desc" class="control-label col-sm-2">Category</label>
                         <div class="col-sm-6">
                             <select class="form-control" name="frm_product_category">
-                              <option value=<?php ?>><?php  ?></option>
+                              <option value=""></option>
                             </select>
                         </div>
                       </div>
@@ -116,13 +133,12 @@
                 </div>
               </div>
               <div class="panel-footer">
-                <button type="button" class="btn btn-primary" name="btn_upload">Insert</button>
+                <button type="submit" class="btn btn-primary" name="btn_insert_product">Insert</button>
               </div>
+            </form>
             </div>
-            <form>
           </div>
       </div>
     </div>
-
   </body>
 </html>
