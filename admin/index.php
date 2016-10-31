@@ -1,8 +1,5 @@
 <?php
-  //include '../config.php';
-  include 'login_check.php';
-  include 'product/product_add.php';
-
+  include_once 'login_check.php';
   $var_username = $_SESSION['username'];
 
   if (empty($var_username)) {
@@ -52,93 +49,43 @@
 
         <ul id="menu">
           <li id="menu-dashboard">
-            <a href="Q"><i class="fa fa-dashboard fw"></i> <span>Dashboard</span></a>
+            <a href="?page=home"><i class="fa fa-dashboard fw"></i> <span>Dashboard</span></a>
           </li>
 
           <li id="menu-catalog">
             <a class="parent"><i class="fa fa-tags fw"></i> <span>Catalog</span></a>
+            <ul>
+              <li><a href="?page=category_add">Add Category</a></li>
+              <li><a href="?page=product_add">Add Product</a></li>
+            </ul>
           </li>
         </ul>
       </nav>
 
       <div id="content">
         <br>
-          <div class="container">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h3 class="panel-title">Insert Product</h3>
-              </div>
-              <div class="panel-body">
-                <div clas="row">
-                  <div class="col-sm-8">
-                    <?php if ( isset($var_message) ) : ?>
-      								<div class="alert alert-warning">
-      									<i class="fa fa-warning fa-lg"></i><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      									<strong><?= $var_message; ?></strong>
-      								</div>
-      						  <?php endif; ?>
-                    <form action="" class="form-horizontal" method="POST" enctype="multipart/form-data">
-                      <div class="form-group">
-                        <label for="frm_product_name" class="control-label col-sm-2">Name</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="frm_product_name" name="frm_product_name">
-                        </div>
-                      </div>
+        <div class="container-fluid">
+          <?php
+            $pages_dir = 'product';
+            if(!empty($_GET['page'])){
+              $pages = scandir($pages_dir, 0);
+              unset($pages[0], $pages[1]);
 
-                      <div class="form-group">
-                        <label for="frm_product_desc" class="control-label col-sm-2">Descripton</label>
-                        <div class="col-sm-6">
-                            <textarea class="form-control" name="frm_product_desc" rows="8" cols="40"></textarea>
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <label for="frm_product_height" class="control-label col-sm-2">Height</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="frm_product_height" name="frm_product_height">
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <label for="frm_product_weight" class="control-label col-sm-2">Weight</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="frm_product_weight" name="frm_product_weight">
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <label for="frm_product_price" class="control-label col-sm-2">Price</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="frm_product_price" name="frm_product_price">
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <label for="frm_img" class="control-label col-sm-2">File input</label>
-                        <div class="col-sm-6">
-                          <input type="file" id="frm_img" class="form-control" name="frm_img"><br/>
-                          <img src="" id="frm_preview" weight="100" height="100"/>
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <label for="frm_product_desc" class="control-label col-sm-2">Category</label>
-                        <div class="col-sm-6">
-                            <select class="form-control" name="frm_product_category">
-                              <option value=""></option>
-                            </select>
-                        </div>
-                      </div>
+              $p = $_GET['page'];
+              if(in_array($p.'.php', $pages)){
+                include($pages_dir.'/'.$p.'.php');
+              } else {
+                echo '<div class="page-header">
+                      <h1>404! Page Not Found</h1>
                   </div>
-                </div>
-              </div>
-              <div class="panel-footer">
-                <button type="submit" class="btn btn-primary" name="btn_insert_product">Insert</button>
-              </div>
-            </form>
-            </div>
-          </div>
-      </div>
+                ';
+              }
+            } else {
+              include($pages_dir.'/home.php');
+            }
+          ?>
+        </div>
+        </div>
     </div>
   </body>
 </html>

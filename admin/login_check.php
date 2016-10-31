@@ -1,5 +1,6 @@
 <?php
-  include '../config.php';
+  include_once '../config.php';
+  include_once '../inc/function.php';
 
   if (isset($_POST['btn_login'])) {
     $var_username = validateSecurity($_POST['frm_username']);
@@ -31,7 +32,7 @@
         if (($var_username == $var_data['username']) && ($var_password == $var_data['password'])) {
           $_SESSION['username'] = $var_username;
           $_SESSION['level'] = $var_status;
-          header('location: index.php');
+          header('location: index.php?page=home');
         } else if ($var_username !== $var_data['username'] || $var_password !== $var_data['password']) {
           $var_message = 'Check your username and password';
         }

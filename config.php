@@ -13,5 +13,5 @@
     die();
   }
 
-  include 'inc/function.php';
+  //include 'inc/function.php';
 ?>

@@ -1,6 +1,4 @@
-<?php
-  include 'login_check.php';
-?>
+<?php include_once 'login_check.php'; ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
