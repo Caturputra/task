@@ -1,5 +1,4 @@
 <?php
-  require '../config.php';
   include_once 'login_check.php';
   $var_username = $_SESSION['username'];
 
@@ -12,7 +11,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Administrator</title>
     <link href="../assets/bootstrap/css/bootstrap.css" type="text/css" rel="stylesheet" />
     <link href="../assets/font-awesome/css/font-awesome.min.css" type="text/css" rel="stylesheet" />
     <link type="text/css" href="../assets/stylesheet/stylesheet.css" rel="stylesheet" media="screen" />
@@ -56,38 +55,9 @@
           <li id="menu-catalog">
             <a class="parent"><i class="fa fa-tags fw"></i> <span>Catalog</span></a>
             <ul>
-              <li><a href="?page=category">Category</a></li>
-              <li><a href="?page=product">Product</a></li>
+              <li><a href="?page=category_add">Add Category</a></li>
+              <li><a href="?page=product">Add Product</a></li>
             </ul>
           </li>
         </ul>
       </nav>
-
-      <div id="content">
-        <br>
-
-        <div class="container-fluid">
-          <?php
-            $pages_dir = 'product';
-            if(!empty($_GET['page'])){
-              $pages = scandir($pages_dir, 0);
-              unset($pages[0], $pages[1]);
-
-              $p = $_GET['page'];
-              if(in_array($p.'.php', $pages)){
-                include($pages_dir.'/'.$p.'.php');
-              } else {
-                echo '<div class="page-header">
-                      <h1>404! Page Not Found</h1>
-                  </div>
-                ';
-              }
-            } else {
-              include($pages_dir.'/home.php');
-            }
-          ?>
-        </div>
-        </div>
-    </div>
-  </body>
-</html>

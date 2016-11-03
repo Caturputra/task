@@ -108,11 +108,40 @@
     $result = mysqli_query($connection, "SELECT $columns FROM $table");
 
     if(mysqli_connect_errno())
-      {
+    {
       $var_message =  "Failed to connect to MySQL: " . mysqli_connect_error();
-      }
+    }
 
     //return tow dimentional array as required columns result
     return mysqli_fetch_all($result,MYSQLI_ASSOC);
-   }
+  }
+
+  // /* FUngsi untuk rekursif menu dan kategori*/
+  // function createTreeView($parent, $menu) {
+  //   $html = "";
+  //   if (isset($menu['parents'][$parent])) {
+  //     $html .= "
+  //     &amp;amp;lt;ol class='tree'&amp;amp;gt;";
+  //     foreach ($menu['parents'][$parent] as $itemId) {
+  //       if(!isset($menu['parents'][$itemId])) {
+  //         $html .= "&amp;amp;lt;li&amp;amp;gt;&amp;amp;lt;label for='subfolder2'
+  //         &amp;amp;gt;&amp;amp;lt;a href='".$menu['items'][$itemId]['link']."'&amp;amp;gt;"
+  //         .$menu['items'][$itemId]['label']."&amp;amp;lt;/a&amp;amp;gt;&amp;amp;lt;/label&amp;amp;gt;
+  //         &amp;amp;lt;input type='checkbox' name='subfolder2'/&amp;amp;gt;&amp;amp;lt;/li&amp;amp;gt;";
+  //       }
+  //       if(isset($menu['parents'][$itemId])) {
+  //         $html .= "
+  //         &amp;amp;lt;li&amp;amp;gt;&amp;amp;lt;label for='subfolder2'&amp;amp;gt;&amp;amp;
+  //         lt;a href='".$menu['items'][$itemId]['link']."'&amp;amp;gt;".$menu['items'][$itemId]['label']
+  //         ."&amp;amp;lt;/a&amp;amp;gt;&amp;amp;lt;/label&amp;amp;gt; &amp;amp;lt;input type='checkbox' name='subfolder2'/
+  //         &amp;amp;
+  //         gt;";
+  //         $html .= createTreeView($itemId, $menu);
+  //         $html .= "&amp;amp;lt;/li&amp;amp;gt;";
+  //       }
+  //     }
+  //     $html .= "&amp;amp;lt;/ol&amp;amp;gt;";
+  //   }
+  //   return $html;
+  // }
 ?>

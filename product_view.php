@@ -1,271 +1,184 @@
 <?php include 'config.php'; ?>
 
-<?php /*header for front */ include 'layout/header.php'; ?>
+<?php include 'layout/header.php'; ?>
 
 <!-- Body dari tampilan per product -->
+
 <div class="back">
 	<h2>Product Details</h2>
 </div>
-<div class="clearfix"> </div>
 </div>
-		<div class="product">
-			<div class="container">
-				<div class="col-md-3 product-price">
+<!---->
+<div class="container">
+	<div class="title"><h3>Keranjang Anda</h3></div>
+	<table class="table table-hover table-condensed">
+		<tr>
+			<th><center>No</center></th>
+			<th><center>Item</center></th>
+			<th><center>Quantity</center></th>
+			<th><center>Sub Total</center></th>
+		</tr>
+		<?php
+		//MENAMPILKAN DETAIL KERANJANG BELANJA//
 
-				<div class=" rsidebar span_1_of_left">
-					<?php include 'layout/categories.php'; ?>
+		$total = 0;
+		//mysql_select_db($database_conn, $conn);
+		if (isset($_SESSION['items'])) {
+			foreach ($_SESSION['items'] as $key => $val) {
+				$query = mysqli_query($var_con, "SELECT * FROM oc_product WHERE product_id = '$key'");
+				$data = mysqli_fetch_array($query);
 
-          <?php include 'layout/tags.php'; ?>
+				$jumlah_harga = $data['product_price'] * $val;
+				$total += $jumlah_harga;
+				$no = 1;
+				?>
+				<tr>
+					<td><center><?php echo $no ++; ?></center></td>
+					<td><center><?php echo $data['product_name']; ?></center></td>
+					<td><center><?php echo number_format($val); ?> Pcs</center></td>
+					<td><center>Rp <?php echo number_format($jumlah_harga); ?></center></td>
+				</tr>
 
-          <?php include 'layout/bottom.php'; ?>
+				<?php
+				//mysql_free_result($query);
+			}
+			//$total += $sub;
+		}?>
+		<?php
+		if($total == 0){ ?>
+			<td colspan="4" align="center"><?php echo "Keranjang Kosong!"; ?></td>
+			<?php } else { ?>
 
-      <div class=" per1">
-      				<img class="img-responsive" src="images/pi3.jpg" alt="">
-      				<div class="six1">
-      					<h4>DISCOUNT</h4>
-      					<p>Up to</p>
-      					<span>60%</span>
-      				</div>
-      			</div>
-          </div>
+				<td colspan="4" style="font-size: 18px;"><b><div class="pull-right">Total Belanja Anda : Rp <?php echo number_format($total); ?>,- </div> </b></td>
 
-          <div class="col-md-9 product-price1">
-  				<div class="col-md-5 single-top">
+				<?php	}
+				?>
+			</table>
+			<p><div align="right">
+				<a href="detail_cart.php" class="btn btn-success">Details Keranjang</a>
+			</div></p>
+		</div>
+		<!-- start: Row -->
 
+		<div class="row">
+			<div class="col-sm-6">
+				<?php
+				$query = mysqli_query($var_con, "SELECT * FROM oc_product WHERE product_id='$_GET[product_id]'");
+				$data  = mysqli_fetch_array($query);
+				?>
+				<!--<div class="span4">-->
+				<!--<div class="icons-box">-->
+				<div class="hero-unit" style="margin-left: 20px;">
+					<table>
+						<tr>
+							<td colspan="4"><div class="title"><h3><?php echo $data['product_name']; ?></h3></div></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td size="200"><h3>Harga</h3></td>
+							<td><h3>:</h3></td>
+							<td><div><h3>Rp.<?php echo number_format($data['product_price'],2,",",".");?></h3></div></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><h3>Stock</h3></td>
+							<td><h3>:</h3></td>
+							<td><div><h3><?php if ($data['qty'] >= 1){
+								echo '<strong style="color: blue;">In Stock</strong>';
+							} else {
+								echo '<strong style="color: red;">Out Of Stock</strong>';
+							}; ?></h3></div></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><h3>Keterangan</h3></td>
+							<td><h3>:</h3></td>
+							<td><div><h3><?php echo $data['product_desc']; ?></h3></div></td>
+						</tr>
+						<!--	<p>
 
+					</p> -->
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td><div class="clear"> <a href="cart.php?act=add&amp;barang_id=<?php echo $data['product_id']; ?>&amp;ref=product_view.php?product_id=<?php echo $data['product_id'];?>" class="btn btn-lg btn-danger">Beli &raquo;</a></div></td>
+					</tr>
 
-
-  						<div class="flexslider">
-  							<ul class="slides">
-  								<li data-thumb="images/si.jpg">
-  									<img src="images/si3.jpeg" />
-  								</li>
-  								<li data-thumb="images/s2.jpg">
-  									<img src="images/si1.jpeg" />
-  								</li>
-  								<li data-thumb="images/s3.jpeg">
-  									<img src="images/si2.jpeg" />
-  								</li>
-  								<li data-thumb="images/s1.jpg">
-  									<img src="images/s12.jpeg" />
-  								</li>
-  							</ul>
-  						</div>
-  					</div>
-  					<div class="col-md-7 single-top-in simpleCart_shelfItem">
-  						<div class="single-para ">
-  						<h4>Gucci</h4>
-  							<div class="star-on">
-  								<ul class="star-footer">
-  										<li><a href="#"><i> </i></a></li>
-  										<li><a href="#"><i> </i></a></li>
-  										<li><a href="#"><i> </i></a></li>
-  										<li><a href="#"><i> </i></a></li>
-  										<li><a href="#"><i> </i></a></li>
-  									</ul>
-  								<div class="review">
-  									<a href="#"> 1 customer review </a>
-
-  								</div>
-  							<div class="clearfix"> </div>
-  							</div>
-
-  							<h5 class="item_price">$ 95.00</h5>
-  							<div class="available">
-  								<ul>
-  									<li>Color
-  										<select>
-  										<option>Silver</option>
-  										<option>Black</option>
-  										<option>Dark Black</option>
-  										<option>Red</option>
-  									</select></li>
-  								<li class="size-in">Size<select>
-  									<option>Large</option>
-  									<option>Medium</option>
-  									<option>small</option>
-  									<option>Large</option>
-  									<option>small</option>
-  								</select></li>
-  								<div class="clearfix"> </div>
-  							</ul>
-  						</div>
-  							<ul class="tag-men">
-  								<li><span>TAG</span>
-  								<span class="women1">: Women,</span></li>
-  								<li><span>SKU</span>
-  								<span class="women1">: CK09</span></li>
-  							</ul>
-  								<a href="#" class="add-cart item_add">ADD TO CART</a>
-
-  						</div>
-  					</div>
-  				<div class="clearfix"> </div>
-  			<!---->
-  					<div class="cd-tabs">
-  			<nav>
-  				<ul class="cd-tabs-navigation">
-  					<li><a data-content="fashion"  href="#0">Description </a></li>
-  					<li><a data-content="cinema" href="#0" >Addtional Informatioan</a></li>
-  					<li><a data-content="television" href="#0" class="selected ">Reviews (1)</a></li>
-
-  				</ul>
-  			</nav>
-  	<ul class="cd-tabs-content">
-  		<li data-content="fashion" >
-  		<div class="facts">
-  									  <p > There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined </p>
-  										<ul>
-  											<li>Research</li>
-  											<li>Design and Development</li>
-  											<li>Porting and Optimization</li>
-  											<li>System integration</li>
-  											<li>Verification, Validation and Testing</li>
-  											<li>Maintenance and Support</li>
-  										</ul>
-  							        </div>
-
-  </li>
-  <li data-content="cinema" >
-  		<div class="facts1">
-
-  						<div class="color"><p>Color</p>
-  							<span >Blue, Black, Red</span>
-  							<div class="clearfix"></div>
-  						</div>
-  						<div class="color">
-  							<p>Size</p>
-  							<span >S, M, L, XL</span>
-  							<div class="clearfix"></div>
-  						</div>
-
-  			 </div>
-
-  </li>
-  <li data-content="television" class="selected">
-  	<div class="comments-top-top">
-  				<div class="top-comment-left">
-  					<img class="img-responsive" src="images/co.png" alt="">
-  				</div>
-  				<div class="top-comment-right">
-  					<h6><a href="#">Hendri</a> - September 3, 2014</h6>
-  					<ul class="star-footer">
-  										<li><a href="#"><i> </i></a></li>
-  										<li><a href="#"><i> </i></a></li>
-  										<li><a href="#"><i> </i></a></li>
-  										<li><a href="#"><i> </i></a></li>
-  										<li><a href="#"><i> </i></a></li>
-  									</ul>
-  									<p>Wow nice!</p>
-  				</div>
-  				<div class="clearfix"> </div>
-  				<a class="add-re" href="#">ADD REVIEW</a>
-  			</div>
-
-  </li>
-  <div class="clearfix"></div>
-  	</ul>
-  </div>
-  			<!---->
-
-  		        	<div class="top-product">
-  					<h3 class="real">Related Products</h3>
-
-  		        		<div class="col-md-4 chain-grid  simpleCart_shelfItem">
-  		        			<div class="grid-span-1">
-  	   		     		<a  href="single.html"><img class="img-responsive " src="images/pi10.jpg" alt=" ">
-  	   		     		</a>
-  	   		     	</div>
-  	   		     		<div class="grid-chain-bottom ">
-  	   		     			<h6><a href="single.html">Sun Glasses    #1</a></h6>
-  	   		     			<div class="star-price">
-  	   		     				<div class="price-at">
-  		   		     				<ul class="star-footer">
-  										<li><a href="#"><i> </i></a></li>
-  										<li><a href="#"><i> </i></a></li>
-  										<li><a href="#"><i> </i></a></li>
-  										<li><a href="#"><i> </i></a></li>
-  										<li><a href="#"><i> </i></a></li>
-  									</ul>
-  									</div>
-  									<div class="price-at-bottom ">
-  										<span class="item_price">$ 75.00</span>
-  									</div>
-  	   		     				<div class="clearfix"> </div>
-  							</div>
-  							<div class="cart-add">
-  								<a class="add1 item_add" href="#">ADD TO CART <i> </i></a>
-  								<a class="add2" href="#"><i> </i></a>
-  								<div class="clearfix"> </div>
-  							</div>
-  	   		     		</div>
-
-  	   		     	</div>
-  	   		     	<div class="col-md-4 chain-grid simpleCart_shelfItem">
-  					<div class="grid-span-1">
-  	   		     		<a href="single.html"><img class="img-responsive " src="images/pi6.jpg" alt=" ">
-  </a>
-  	   		     		</div>
-  	   		     		<div class="grid-chain-bottom ">
-  	   		     			<h6><a href="single.html">Stylish Glasses    #1</a></h6>
-  	   		     			<div class="star-price">
-  	   		     				<div class="price-at">
-  		   		     				<ul class="star-footer">
-  										<li><a href="#"><i> </i></a></li>
-  										<li><a href="#"><i> </i></a></li>
-  										<li><a href="#"><i> </i></a></li>
-  										<li><a href="#"><i> </i></a></li>
-  										<li><a href="#"><i> </i></a></li>
-  									</ul>
-  									</div>
-  									<div class="price-at-bottom ">
-  										<span class="item_price">$ 65.00</span>
-  									</div>
-  	   		     				<div class="clearfix"> </div>
-  							</div>
-  							<div class="cart-add">
-  								<a class="add1 item_add" href="#">ADD TO CART <i> </i></a>
-  								<a class="add2" href="#"><i> </i></a>
-  								<div class="clearfix"> </div>
-  							</div>
-  	   		     		</div>
-  	   		     	</div>
-  	   		     	<div class="col-md-4 chain-grid simpleCart_shelfItem">
-  					<div class="grid-span-1">
-  	   		     		<a href="single.html"><img class="img-responsive " src="images/pi5.jpg" alt=" ">
-  </a>
-  	   		     		</div>
-  	   		     		<div class="grid-chain-bottom ">
-  	   		     			<h6><a href="single.html">Specs Glasses    #1</a></h6>
-  	   		     			<div class="star-price">
-  	   		     				<div class="price-at">
-  		   		     				<ul class="star-footer">
-  										<li><a href="#"><i> </i></a></li>
-  										<li><a href="#"><i> </i></a></li>
-  										<li><a href="#"><i> </i></a></li>
-  										<li><a href="#"><i> </i></a></li>
-  										<li><a href="#"><i> </i></a></li>
-  									</ul>
-  									</div>
-  									<div class="price-at-bottom ">
-  										<span class="item_price">$ 85.00</span>
-  									</div>
-  	   		     				<div class="clearfix"> </div>
-  							</div>
-  							<div class="cart-add">
-  								<a class="add1 item_add" href="#">ADD TO CART <i> </i></a>
-  								<a class="add2" href="#"><i> </i></a>
-  								<div class="clearfix"> </div>
-  							</div>
-  	   		     		</div>
-
-  		        	</div>
-  	   		     	<div class="clearfix"> </div>
-  		        	</div>
+				</table>
+			</div>
 
 
-  				</div>
-          <div class="clearfix"> </div>
-        </div>
-      </div>
-<?php /*header for front */ include 'layout/footer.php'; ?>
+			<div class="product">
+				<div class="container">
+					<div class="col-md-3 product-price">
+
+						<div class="rsidebar span_1_of_left">
+							<?php include 'layout/categories.php'; ?>
+						</div>
+
+						<?php include 'layout/tags.php'; ?>
+
+					</div> <!-- end of product price -->
+
+					<div class="col-md-9 product-price1">
+						<div class="col-md-5 single-top">
+							<div class="flexslider">
+								<ul class="slides">
+									<?php
+									$var_pid = $_GET['product_id'];
+
+									$var_sqlimg = "SELECT * FROM oc_product_image WHERE product_id = '{$var_pid}'";
+									$var_queryimg = mysqli_query($var_con, $var_sqlimg);
+									while($var_dataimg = mysqli_fetch_array($var_queryimg)) {
+										?>
+										<li data-thumb="admin/<?= $var_dataimg['product_image_path']; ?>">
+											<img src="admin/<?= $var_dataimg['product_image_path']; ?>" />
+										</li>
+										<?php } ?>
+									</ul>
+								</div>
+							</div> <!-- end of single top -->
+							<?php
+							/*
+							** Menampilkan product
+							*/
+							$var_sqlid = "SELECT * FROM oc_product_image i JOIN oc_product p on p.product_id = i.product_id JOIN oc_product_desc d on d.product_id = i.product_id WHERE i.product_id = '{$var_pid}'";
+							$var_queryid = mysqli_query($var_con, $var_sqlid);
+							$var_data = mysqli_fetch_array($var_queryid);
+							?>
+							<div class="col-md-7 single-top-in simpleCart_shelfItem">
+								<div class="single-para">
+									<h4><?= $var_data['product_name']; ?></h4>
+									<div class="star-on">
+										<ul class="star-footer">
+											<li><a href="#"><i> </i></a></li>
+											<li><a href="#"><i> </i></a></li>
+											<li><a href="#"><i> </i></a></li>
+											<li><a href="#"><i> </i></a></li>
+											<li><a href="#"><i> </i></a></li>
+										</ul>
+										<div class="review">
+											<a href="#"> 1 customer review </a>
+
+										</div>
+										<div class="clearfix"> </div>
+									</div>
+
+									<h5 class="item_price"><?= number_format($var_data['product_price'],0,",","."); ?></h5>
+									<form class="" action="" method="post">
+										<div class="form-group">
+											<label for="frm_qty" class="control-label"></label>
+											<input type="number" class="form-control" id="frm_qty" name="frm_qty" placeholder="Quantity">
+										</div>
+									</form>
+									<a href="product_view.php?product_id=<?= urldecode($var_data['product_id'])?>" class="add-cart item_add">ADD TO CART</a>
+								</div>
+							</div>
+							<div class="clearfix"> </div>
+						</div> <!-- end of top-product -->
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+
+				<?php /*header for front */ include 'layout/footer.php'; ?>

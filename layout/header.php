@@ -2,63 +2,39 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" charset="utf-8" />
     <title>Home</title>
-    <link href="assets/bootstrap/css/bootstrap.css" type="text/css" rel="stylesheet" />
-    <link href="assets/font-awesome/css/font-awesome.min.css" type="text/css" rel="stylesheet" />
-    <link type="text/css" href="assets/stylesheet/stylesheet.css" rel="stylesheet" media="screen" />
-    <link type="text/css" href="assets/stylesheet/style.css" rel="stylesheet" media="screen" />
-    <link type="text/css" href="assets/stylesheet/memenu.css" rel="stylesheet" media="screen" />
-    <link type="text/css" href="assets/stylesheet/flexslider.css" rel="stylesheet" media="screen" />
-    <link type="text/css" href="assets/stylesheet/jquery-ui.css" rel="stylesheet" media="screen" />
+    <link href="./assets/bootstrap/css/bootstrap.css" type="text/css" rel="stylesheet" />
+    <link href="./assets/font-awesome/css/font-awesome.min.css" type="text/css" rel="stylesheet" />
+    <link type="text/css" href="./assets/stylesheet/stylesheet.css" rel="stylesheet" media="screen" />
+    <link type="text/css" href="./assets/stylesheet/style.css" rel="stylesheet" media="screen" />
+    <link type="text/css" href="./assets/stylesheet/memenu.css" rel="stylesheet" media="screen" />
+    <link type="text/css" href="./assets/stylesheet/flexslider.css" rel="stylesheet" media="screen" />
+    <link type="text/css" href="./assets/stylesheet/jquery-ui.css" rel="stylesheet" media="screen" />
 
-    <script type="text/javascript" src="assets/javascript/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="assets/javascript/common.js"></script>
-    <script type="text/javascript" src="assets/javascript/easing.js"></script>
-    <script type="text/javascript" src="assets/javascript/easyResponsiveTabs.js"></script>
-    <script type="text/javascript" src="assets/javascript/memenu.js"></script>
-    <script type="text/javascript" src="assets/javascript/move-top.js"></script>
-    <script type="text/javascript" src="assets/javascript/simpleCart.min.js"></script>
-    <script type="text/javascript" src="assets/javascript/jquery.flexslider.js"></script>
-    <script type="text/javascript" src="assets/javascript/jquery-ui.min.js"></script>
-    <script type="application/x-javascript">
-      addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
-    </script>
-    <script>
-    	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <!-- <script type="text/javascript" src="./assets/javascript/jquery-2.1.1.min.js"></script> -->
+    <script type="text/javascript" src="./assets/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./assets/javascript/common.js"></script>
+    <script type="text/javascript" src="./assets/javascript/easing.js"></script>
+    <script type="text/javascript" src="./assets/javascript/easyResponsiveTabs.js"></script>
+    <script type="text/javascript" src="./assets/javascript/memenu.js"></script>
+    <script type="text/javascript" src="./assets/javascript/move-top.js"></script>
+    <!-- <script type="text/javascript" src="./assets/javascript/simpleCart.min.js"></script> -->
+    <script type="text/javascript" src="./assets/javascript/jquery.flexslider.js"></script>
+    <script type="text/javascript" src="./assets/javascript/jquery-ui.min.js"></script>
+		<script type="text/javascript">
+  			$(window).load(function() {
 
-      	ga('create', 'UA-48014931-1', 'codyhouse.co');
-      	ga('send', 'pageview');
-
-      	jQuery(document).ready(function($){
-      		$('.close-carbon-adv').on('click', function(){
-      			$('#carbonads-container').hide();
-      		});
-      	});
-    </script>
-    <script type="text/javascript">
-	    $(document).ready(function () {
-	        $('#horizontalTab').easyResponsiveTabs({
-	            type: 'default', //Types: default, vertical, accordion
-	            width: 'auto', //auto or any width like 600px
-	            fit: true   // 100% fit in a container
-	        });
+  				$('.flexslider').flexslider({
+  					animation: "slide",
+  					controlNav: "thumbnails"
+  				});
 
           $(".memenu").memenu();
 
-          $(window).load(function() {
-            $('.flexslider').flexslider({
-              animation: "slide",
-              controlNav: "thumbnails"
-            });
-          });
-
           $(function() {
-              var menu_ul = $('.menu > li > ul'),
+              var menu_ul = $('.menu > li > ul '),
                      menu_a  = $('.menu > li > a');
               menu_ul.hide();
               menu_a.click(function(e) {
@@ -72,32 +48,9 @@
                       $(this).next().stop(true,true).slideUp('normal');
                   }
               });
-
           });
-
-          var defaults = {
-          containerID: 'toTop', // fading element id
-          containerHoverID: 'toTopHover', // fading element hover id
-          scrollSpeed: 1200,
-          easingType: 'linear'
-          };
-
-          $().UItoTop({ easingType: 'easeOutQuart' });
-
-          $(window).load(function(){
-          $( "#slider-range" ).slider({
-                range: true,
-                min: 0,
-                max: 500,
-                values: [ 100, 400 ],
-                slide: function( event, ui ) {  $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
-                }
-          });
-          $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) + " - $" + $( "#slider-range" ).slider( "values", 1 ) );
-
-          });
-	    });
-    </script>
+  			});
+		</script>
   </head>
   <body>
     <!--header-->

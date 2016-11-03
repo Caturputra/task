@@ -11,6 +11,7 @@ function bacaGambar(input) {
 }
 
 $(document).ready(function() {
+
   $("#frm_img").change(function(){
    bacaGambar(this);
  });
@@ -50,4 +51,9 @@ $(document).ready(function() {
 			$(this).parent('li').siblings().removeClass('open').children('ul.in').collapse('hide');
 		}
 	});
-})(window.jQuery);
+
+  $('#horizontalTab').easyResponsiveTabs({
+      type: 'default', //Types: default, vertical, accordion
+      width: 'auto', //auto or any width like 600px
+      fit: true   // 100% fit in a container
+  });

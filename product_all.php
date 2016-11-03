@@ -13,12 +13,12 @@
     <div class="container">
       <div class="col-md-3 product-price">
         <div class=" rsidebar span_1_of_left">
-          <?php include 'layout/categories.php' ?>
+          <?php include 'layout/categories.php'; ?>
         </div>
 
-        <?php include 'layout/tags.php' ?>
+        <?php include 'layout/tags.php'; ?>
 
-        <?php include 'layout/bottom.php' ?>
+        <?php include 'layout/bottom.php'; ?>
 
         <br>
       </div> <!-- /.product-price -->
@@ -51,7 +51,7 @@
             ?>
             <div class="col-md-4 chain-grid  simpleCart_shelfItem">
               <div class="grid-span-1">
-              		<a  href="?product_id=<?php echo urlencode($var_img['product_id'])?>"><img class="img-responsive " src="admin/<?= $var_img['product_image_path']?>" alt="<?= $var_img['product_image_name']?>">
+              		<a  href="product_view.php?product_id=<?php echo urlencode($var_img['product_id'])?>"><img class="img-responsive " src="admin/<?= $var_img['product_image_path']?>" alt="<?= $var_img['product_image_name']?>">
                   <div class="link">
                     <ul>
                       <li><i class="glyphicon glyphicon-search"> </i></li>
@@ -60,16 +60,16 @@
                 </a>
               </div>
               <div class="grid-chain-bottom ">
-                <a href="product_view.php?product_id=<?= urlencode($var_img['product_id'])?>"><?= $var_img['product_name'] ?></a>
+                <a href="product_view.php?product_id=<?= urlencode($var_img['product_id']);?>"><?= $var_img['product_name'] ?></a>
                 <div class="star-price">
                   <div class="price-at-bottom ">
-                    <span class="item_price">Price : <?= number_format($var_img['product_price'],2,",",".") ?></span>
+                    <span class="item_price">Price : Rp <?= number_format($var_img['product_price'],2,",","."); ?></span>
                   </div>
                   <div class="clearfix"> </div>
                 </div>
-                <div class="cart-add">
-                  <a class="add1 item_add" href="#">ADD TO CART <i> </i></a>
-                  <a class="add2" href="#"><i class="glyphicon glyphicon-heart-empty"> </i></a>
+                <div class="cart-add" style="text-align: center !important; width: 350px;">
+                  <a class="add1 item_add" href="product_view.php?product_id=<?= urldecode($var_img['product_id']); ?>">ADD TO CART <i> </i></a>
+                  <a class="add1 item_add" href="product_view.php?product_id=<?= urldecode($var_img['product_id']); ?>">Detail <i> </i></a>
                   <div class="clearfix"> </div>
                 </div>
               </div>

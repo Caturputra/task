@@ -5,20 +5,21 @@
     $var_height = validateSecurity($_POST['frm_product_height']);
     $var_weight = validateSecurity($_POST['frm_product_weight']);
     $var_price = validateSecurity($_POST['frm_product_price']);
+    $var_qty = validateSecurity($_POST['frm_product_qty']);
     $var_cat = validateSecurity($_POST['frm_product_category']);
 
     if (empty($var_name)) {
-      $var_message = "Name of product cannot empty!";
+      $var_message = "We need product name.";
       $var_init = false;
     } else
 
     if (empty($var_desc)) {
-      $var_message = "Decription of product cannot empty!";
+      $var_message = "We need product description.";
       $var_init = false;
     } else
 
     if (empty($var_height)) {
-      $var_message = "Height of product cannot empty!";
+      $var_message = "We need product Height.";
       $var_init = false;
     } else
 
@@ -28,12 +29,17 @@
     } else
 
     if (empty($var_weight)) {
-      $var_message = "Weight of product cannot empty!";
+      $var_message = "We need product weight.";
       $var_init = false;
     } else
 
     if (empty($var_price)) {
-      $var_message = "Price of product cannot empty!";
+      $var_message = "We need product price.";
+      $var_init = false;
+    } else
+
+    if (empty($var_qty)) {
+      $var_message = "We need product quantity.";
       $var_init = false;
     } else
 
@@ -51,9 +57,19 @@
           'product_id' => null,
           'product_price' => $var_price,
           'product_height' => $var_height,
-          'product_weight' => $var_weight
+          'product_weight' => $var_weight,
+          'qty' => $var_qty
         );
-        insert($var_con, "oc_product", $var_product);
+        if(insert($var_con, "oc_product", $var_product)){
+          $var_message = "Data not uploaded.";
+        } else {
+          echo '<script>
+          var conn=confirm("Data is updated.");
+          if(conn==true){
+               window.location.assign("?page=product");
+          }
+          </script>';
+        }
 
         /*
         ** Proses untuk memasukkan data ke deskripsi produk
@@ -100,11 +116,11 @@
                 'product_id' => $var_get_id
               );
               insert($var_con, "oc_product_image", $var_data);
-            }
           }
         }
       }
     }
     }
   }
+}
 ?>
