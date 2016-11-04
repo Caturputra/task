@@ -1,4 +1,5 @@
 <?php include 'config.php'; ?>
+
 <?php include 'layout/header.php'; ?>
 
 <!-- Body -->
@@ -51,7 +52,7 @@
             ?>
             <div class="col-md-4 chain-grid  simpleCart_shelfItem">
               <div class="grid-span-1">
-              		<a  href="product_view.php?product_id=<?php echo urlencode($var_img['product_id'])?>"><img class="img-responsive " src="admin/<?= $var_img['product_image_path']?>" alt="<?= $var_img['product_image_name']?>">
+              		<a  href=""><img class="img-responsive " src="admin/<?= $var_img['product_image_path']?>" alt="<?= $var_img['product_image_name']?>">
                   <div class="link">
                     <ul>
                       <li><i class="glyphicon glyphicon-search"> </i></li>
@@ -60,16 +61,16 @@
                 </a>
               </div>
               <div class="grid-chain-bottom ">
-                <a href="product_view.php?product_id=<?= urlencode($var_img['product_id']);?>"><?= $var_img['product_name'] ?></a>
+                <a href=""><?= $var_img['product_name'] ?></a>
                 <div class="star-price">
                   <div class="price-at-bottom ">
                     <span class="item_price">Price : Rp <?= number_format($var_img['product_price'],2,",","."); ?></span>
                   </div>
                   <div class="clearfix"> </div>
                 </div>
-                <div class="cart-add" style="text-align: center !important; width: 350px;">
-                  <a class="add1 item_add" href="product_view.php?product_id=<?= urldecode($var_img['product_id']); ?>">ADD TO CART <i> </i></a>
-                  <a class="add1 item_add" href="product_view.php?product_id=<?= urldecode($var_img['product_id']); ?>">Detail <i> </i></a>
+                <div class="cart-add">
+                  <a class="add1 item_add pesan" href="cart.php?act=add&amp;product_id=<?php echo $var_img['product_id']; ?>&amp;ref=product_all.php?id=<?php echo $var_img['product_id'];?>">ADD TO CART</a>
+                  <a class="add1 item_add" href="product_view.php?id=<?= urldecode($var_img['product_id']); ?>">Detail <i> </i></a>
                   <div class="clearfix"> </div>
                 </div>
               </div>

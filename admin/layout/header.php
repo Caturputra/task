@@ -17,8 +17,8 @@
     <link type="text/css" href="../assets/stylesheet/stylesheet.css" rel="stylesheet" media="screen" />
 
     <script type="text/javascript" src="../assets/javascript/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="../assets/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../assets/javascript/common.js"></script>
+    <script type="text/javascript" src="../assets/bootstrap/js/bootstrap.min.js"></script>
   </head>
   <body>
     <div id="container">

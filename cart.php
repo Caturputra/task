@@ -1,5 +1,7 @@
 <?php
     require 'config.php';
+    require 'inc/function.php';
+    $sid = session_id();
 
     if (!isset($_SESSION)) {
         session_start();
@@ -14,6 +16,7 @@
                 $product_id = $_GET['product_id'];
                 if (isset($_SESSION['items'][$product_id])) {
                     $_SESSION['items'][$product_id] += 1;
+                    }
                 } else {
                     $_SESSION['items'][$product_id] = 1;
                 }
@@ -22,6 +25,7 @@
             if (isset($_GET['product_id'])) {
                 $product_id = $_GET['product_id'];
                 if (isset($_SESSION['items'][$product_id])) {
+                    //$_SESSION['customer'] = $var_cid;
                     $_SESSION['items'][$product_id] += 1;
                 }
             }
@@ -29,6 +33,7 @@
             if (isset($_GET['product_id'])) {
                 $product_id = $_GET['product_id'];
                 if (isset($_SESSION['items'][$product_id])) {
+                  //  $_SESSION['customer'] = $var_cid;
                     $_SESSION['items'][$product_id] -= 1;
                 }
             }

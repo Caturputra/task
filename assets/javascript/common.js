@@ -57,3 +57,4 @@ $(document).ready(function() {
       width: 'auto', //auto or any width like 600px
       fit: true   // 100% fit in a container
   });
+});

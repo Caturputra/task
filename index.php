@@ -1,5 +1,6 @@
 <?php
-include 'config.php';
+  include 'config.php';
+  $sid = isset($sid) ? $sid=session_id() : null;
 ?>
 <?php include 'layout/header.php'; ?>
 
@@ -80,7 +81,8 @@ include 'config.php';
                   <p>Price : <?= number_format($var_data['product_price'],0,",","."); ?></p>
                 </div> <!-- .tab_desc -->
               </div> <!-- .tab_img -->
-              <p><a class="btn btn-primary btn-block" href="product_view.php?product_id=<?= urldecode($var_data['product_id'])?>" >Add to cart</a></p>
+              <a class="btn btn-primary" href="product_view.php?id=<?= urldecode($var_data['product_id'])?>"> DETAIL</a>
+              <a class="btn btn-primary" href="cart.php?act=add&amp;product_id=<?php echo $var_data['product_id']; ?>&amp;ref=product_view.php?id=<?php echo $var_data['product_id'];?>">ADD TO CART</a>
             </div> <!-- .resp tab conten -->
             <?php } ?></div>
           </div> <!-- end of col -->
@@ -104,7 +106,8 @@ include 'config.php';
                       <p>Price : <?= number_format($var_data['product_price'],0,",","."); ?></p>
                     </div> <!-- .tab_desc -->
                   </div> <!-- .tab_img -->
-                  <p><a class="btn btn-primary btn-block" href="product_view.php?product_id=<?= urldecode($var_data['product_id'])?>" >Add to cart</a></p>
+                  <a class="btn btn-primary" href="product_view.php?id=<?= urldecode($var_data['product_id'])?>"> DETAIL</a>
+                  <a class="btn btn-primary" href="cart.php?act=add&amp;product_id=<?php echo $var_data['product_id']; ?>&amp;ref=product_view.php?id=<?php echo $var_data['product_id'];?>">ADD TO CART</a>
                 </div> <!-- .resp tab conten -->
                 <?php } ?></div>
               </div> <!-- end of col -->
@@ -128,7 +131,8 @@ include 'config.php';
                           <p>Price : <?= number_format($var_data['product_price'],0,",","."); ?></p>
                         </div> <!-- .tab_desc -->
                       </div> <!-- .tab_img -->
-                      <p><a class="btn btn-primary btn-block" href="product_view.php?product_id=<?= urldecode($var_data['product_id'])?>" >Add to cart</a></p>
+                      <a class="btn btn-primary" href="product_view.php?id=<?= urldecode($var_data['product_id'])?>"> DETAIL</a>
+                      <a class="btn btn-primary" href="cart.php?act=add&amp;product_id=<?php echo $var_data['product_id']; ?>&amp;ref=product_view.php?id=<?php echo $var_data['product_id'];?>">ADD TO CART</a>
                     </div> <!-- .resp tab conten -->
                     <?php } ?></div>
                   </div> <!-- end of col -->
@@ -152,7 +156,8 @@ include 'config.php';
                               <p>Price : <?= number_format($var_data['product_price'],0,",","."); ?></p>
                             </div> <!-- .tab_desc -->
                           </div> <!-- .tab_img -->
-                          <p><a class="btn btn-primary btn-block" href="product_view.php?product_id=<?= urldecode($var_data['product_id'])?>" >Add to cart</a></p>
+                          <a class="btn btn-primary" href="product_view.php?id=<?= urldecode($var_data['product_id'])?>"> DETAIL</a>
+                          <a class="btn btn-primary" href="cart.php?act=add&amp;product_id=<?php echo $var_data['product_id']; ?>&amp;ref=product_view.php?id=<?php echo $var_data['product_id'];?>">ADD TO CART</a>
                         </div> <!-- .resp tab conten -->
                         <?php } ?></div>
                       </div> <!-- end of col -->
